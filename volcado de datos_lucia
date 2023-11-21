@@ -1,0 +1,169 @@
+
+package trabajo;
+
+import java.util.Scanner;
+
+public class Trabajo_idea_volcado_datos_array_mas_grande {
+    
+    public static Scanner sc = new Scanner(System.in);
+//  V   A   R   I   A   B   L   E   S      G   L   O   B   A   L   E   S.................................
+    static int numero_entrada_volcados; /*para que se guarde cuantos volcados hicimos y así en las proximas entradas no pisen datos*/
+    static String[][] base_libros = new String[5][20];
+    static String[][] base_articulos = new String[4][20];
+    static String[][] base_revistas = new String[4][20];
+    
+//  V   A   R   I   A   B   L   E   S      G   L   O   B   A   L   E   S.................................    
+    public static void main(String[] args) {
+        numero_entrada_volcados = 0;
+        volcado_datos_demo();
+        leer_elegir();
+        
+    }
+
+//  F   U   N   C   I   O   N   E   S   .................................................................
+// l e c t u r a   d e   d a t o s .....................
+    static void leer_elegir() {    //que la variable a te diga el caso de que quieres leer
+        String respuesta;
+        int a;
+        boolean bucle = true;
+        System.out.printf("va a leer datos.\n");
+        System.out.printf("Para leer datos de libros pulse 1.\n Para leer datos de articulos pulse 2.\n Para leer datos de las revistas pulse 3.\n");
+        do {
+            System.out.printf("¿Que desea hacer? (4 para salir):");
+            respuesta = sc.nextLine();
+            System.out.println();
+            a = Integer.parseInt(respuesta);
+            switch (a) {
+                case 1:
+                    leer(base_libros);
+                    break;
+                case 2:
+                    leer(base_articulos);
+                    break;
+                case 3:
+                    leer(base_revistas);
+                    break;
+                case 4:
+                    bucle = false;
+                    break;
+                default:
+                    System.out.println("Te equivocaste");
+            }
+
+        } while (bucle);
+    }
+
+    static void leer(String[][] datos) {    //que la variable a te diga el caso de que quieres leer
+        int filas = datos.length;
+        int columnas = datos[0].length;
+
+        for (int i = 0; i < filas; i++) {
+            System.out.printf("%s:          ", datos[i][0]);
+            for (int j = 1; j < columnas; j++) {
+                if(datos[i][j] != null){
+                   System.out.printf("%s   ", datos[i][j]); 
+                }
+            }
+            System.out.println();
+        }
+        System.out.println();
+        System.out.println();
+    }
+
+// l e c t u r a   d e   d a t o s .....................
+//   V   O   L   C   A   D   O        D   E        D   A   T   O   S  ...................................
+    static void volcado_datos_demo() { //meter en hueco los valores de volcado
+        volcado_datos_libros(datos_libros());
+        volcado_datos_revistas(datos_revistas());
+        volcado_datos_articulos(datos_articulos());
+    }
+    static void volcado_datos_libros(String[][] libros) { //meter en hueco los valores de volcado
+        int filas = libros.length;
+        int columnas = libros[0].length;
+        for(int j=0;j<columnas;j++){ /*la primera columna de cada fila esta dedicada a saber que tipo de campo es*/
+            for(int i=0;i<filas;i++){
+                base_libros[i][j]=libros[i][j];
+            }
+            numero_entrada_volcados ++;
+        }
+    }
+    static void volcado_datos_revistas(String[][] revistas) { //meter en hueco los valores de volcado
+        int filas = revistas.length;
+        int columnas = revistas[0].length;
+        for(int j=0;j<columnas;j++){ /*la primera columna de cada fila esta dedicada a saber que tipo de campo es*/
+            for(int i=0;i<filas;i++){
+                base_revistas[i][j]=revistas[i][j];
+            }
+            numero_entrada_volcados ++;
+        }
+    }
+    static void volcado_datos_articulos(String[][] articulos) { //meter en hueco los valores de volcado
+        int filas = articulos.length;
+        int columnas = articulos[0].length;
+        for(int j=0;j<columnas;j++){ 
+            for(int i=0;i<filas;i++){
+                base_articulos[i][j]=articulos[i][j];
+                numero_entrada_volcados ++;             //PORQUE CADA COLUMNA ES UNA ENTRADA
+            }
+        }
+}
+    
+//  .........         D   A   T   O   S         ........
+    
+        static String[][] datos_libros() {
+        String[][] libros = {
+            {"NOMBRE","       Libro1", " Libro2", " Libro3", "Canticos", "     brillos purpuras"},
+            {"AUTOR","        Juanjo", " Juanjo2", "Juanjo3", "mariah carey", "Sam smith"},
+            {"EDITORIAL","    braille", "braille", "braille", "Malpaso", "     Grijalbo"},
+            {"EDICION","      2023", "   2023", "   2023", "   2009", "        2018"},
+            {"RESERVADO POR","x", "      x", "      x", "      x", "           Lucia"}
+        };
+        return libros;
+    }
+    static String[][] datos_revistas() {
+        String[][] revistas = {
+            {"NOMBRE","           Revista1", "Revista2", "Revista3", "Revista4", "Revista5"},
+            {"NUMERO DE REVISTA","1531","     551","      5465","     541","      843"},
+            {"EDITORIAL","        2020","     2000","     1958","     2023","     2021"},
+            {"RESERVADO POR","    Alejandro","x","        x","        x","        x"}            
+        };
+        return revistas;
+    }
+    static String[][] datos_articulos() {
+        String[][] articulos = {
+            {"NOMBRE","       articulo1","articulo2","articulo3","articulo4","articulo5"},
+            {"AUTOR","        Mario","    Mario","    Mario","    Juan","     Lorenzo"},
+            {"FECHA","        2020","     2000","     1958","     2023","     2021"},
+            {"RESERVADO POR","Alejandro","x","        x","        x","        x"}
+        };
+        return articulos;
+}
+}
+//  .........         D   A   T   O   S         ........
+    
+//   V   O   L   C   A   D   O        D   E        D   A   T   O   S  ...................................
+    
+    
+    
+    
+    
+//Datos:         
+//     String[][] usuarios = {  "Javier",   "Luis",     "Alejandro",    "Daniel",   "Lucia"};
+//                contraseñas = {"1234",    "Elmejor",  "Profesor45",   "Alumno15", "Alumna23"};
+//     String[][] Libros=       {"Libro1",  "Libro2",   "Libro3",   "Canticos",     "brillos purpuras"};
+//                autores=      {"Juanjo",  "Juanjo2",  "Juanjo3",  "mariah carey", "Sam smith"};
+//                editoriales = {"braille", "braille",  "braille",  "Malpaso",       "Grijalbo"};
+//                edicion =     {"2023",    "2023",     "2023",     "2009",         "2018"};
+//                usuario = {    "x",       "x",        "x",        "x",            "Lucia"}; 
+//El libro de sam smith lo tiene lucia, brillos purpuras, el resto no lo tiene nadie
+//     String[][] Revistas= {        "Revista1", "Revista2", "Revista3", "Revista4", "Revista5"};
+//                Numero_revista={    1531,       551,        5465,       541,        843};
+//                Fecha_publicacion={ 2020,       2000,       1958,       2023,       2021};
+//                usuario = {       "Alejandro","x",        "x",        "x",        "x"};
+//La primera revista la tiene Alejandro
+//     String[][] articulos= {      "articulo1","articulo2","articulo3","articulo4","articulo5"};
+//                autor= {           "Mario",    "Mario",    "Mario",    "Juan",     "Lorenzo"};
+//                Fecha_publicacion={ 2020,       2000,      1958,        2023,       2021};
+//                usuario = {         "x",       "x",        "Daniel",   "x",        "x"};
+// El articulo3 lo tiene Daniel
+//
